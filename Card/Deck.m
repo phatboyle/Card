@@ -23,6 +23,12 @@
     }
 }
 
+- (NSMutableArray *) cards{
+    if (!_cards) _cards = [[NSMutableArray alloc] init];
+    return _cards;
+        
+}
+
 - (void)addCard:(Card *)card
 {
     [self addCard:card atTop:NO];

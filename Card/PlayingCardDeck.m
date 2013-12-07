@@ -23,8 +23,6 @@
                 [self addCard:card];
                 
             }
-        
-        
         }
         
     }

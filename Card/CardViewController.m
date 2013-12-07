@@ -7,10 +7,13 @@
 //
 
 #import "CardViewController.h"
+#import "Deck.h"
+#import "PlayingCardDeck.h"
 
 @interface CardViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipCountLabel;
 @property (nonatomic) NSInteger flipCount;
+@property (strong, nonatomic) Deck *deck;
 @end
 
 @implementation CardViewController
@@ -26,11 +29,20 @@
         [sender setTitle:@"" forState: UIControlStateNormal];
     } else {
         [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"] forState:UIControlStateNormal];
-        [sender setTitle: @"A♣" forState:UIControlStateNormal];
+        Card *c = [self.deck drawRandomCard];
+        NSLog(@"%@",c.contents);
+        [sender setTitle: c.contents forState:UIControlStateNormal];
     }
     self.flipCount++;
+}
 
-
+- (Deck*) deck{
+    if (!_deck) {
+        _deck = [[PlayingCardDeck alloc] init];
+        
+    }
+    return _deck;
+    
 }
 
 - (void)setFlipCount:(NSInteger)flipCount
